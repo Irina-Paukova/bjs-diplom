@@ -60,7 +60,7 @@ class MoneyManager {
     } else {
       this.errorMessageBlock.className = 'ui message fluid error';
     }
-
+    
     this.errorMessageBlock.innerText = message;
     this.errorMessageBlock.style.display = 'block';
     setTimeout(() => { this.errorMessageBlock.style.display = 'none'; }, 5000);
