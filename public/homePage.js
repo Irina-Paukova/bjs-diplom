@@ -30,17 +30,17 @@ function updateMessage(data, success, message) {
 }
 moneyManager.addMoneyCallback = data => ApiConnector.addMoney(data, response => response.success ? 
 	updateMessage(response.data, response.success, "Баланс успешно пополнен!") : 
-		moneyManager.setMessage(response.success, "Ошибка пополнения счета"));
+		moneyManager.setMessage(response.success, response.data));
 
 //Конвертирование валюты:
 moneyManager.conversionMoneyCallback = data => ApiConnector.convertMoney(data, response => response.success ? 
 	updateMessage(response.data, response.success, "Конвертация успешно выполнена!") :
-		moneyManager.setMessage(response.success, "Ошибка конвертации"));
+		moneyManager.setMessage(response.success, response.data));
 
 //Перевод валюты:
 moneyManager.sendMoneyCallback = data => ApiConnector.transferMoney(data, response => response.success ? 
 	updateMessage(response.data, response.success, "Перевод прошел успешно!") :
-		moneyManager.setMessage(response.success, "Перевод не удался"));
+		moneyManager.setMessage(response.success, response.data));
 
 //Запрос начального списка избранного:
 function updateTableFavoritesWidget(data) {
@@ -53,8 +53,8 @@ ApiConnector.getFavorites(response => response.success && updateTableFavoritesWi
 
 //Добавление пользователя в список избранных:
 favoritesWidget.addUserCallback = data => ApiConnector.addUserToFavorites(data, response => response.success ? 
-	updateTableFavoritesWidget(response.data) : moneyManager.setMessage(response.success, "Ошибка добавления пользователя"));
+	updateTableFavoritesWidget(response.data) : moneyManager.setMessage(response.success, response.data));
 
 //Удаление пользователя из избранного:
 favoritesWidget.removeUserCallback = data => ApiConnector.removeUserFromFavorites(data, response => response.success ? 
-	updateTableFavoritesWidget(response.data) : moneyManager.setMessage(response.success, "Ошибка удаления пользователя"));
+	updateTableFavoritesWidget(response.data) : moneyManager.setMessage(response.success, response.data));
